@@ -49,8 +49,7 @@ let pokemonRepository = (function () {
 
 console.log(pokemonRepository.getAll()); // returns pokemonList Array which has 4 pokemons
 
-
-// Accesing t
+// Adds a new pokemon in the pokemonRepository
 pokemonRepository.add(
   { name: 'Charmander',
     types: 'fire',
