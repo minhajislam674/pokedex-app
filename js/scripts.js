@@ -30,7 +30,11 @@ let pokemonRepository = (function () {
 //The following two functions are what will allow anything outside the IIFE to interact with the pokemonList variable within it.
 
   function add(pokemon) {
+    if (typeof pokemon === 'object') {
       pokemonList.push(pokemon);
+    } else {
+      console.log('please enter valid data');
+    }
   }
 
   function getAll() {
@@ -50,6 +54,7 @@ let pokemonRepository = (function () {
 console.log(pokemonRepository.getAll()); // returns pokemonList Array which has 4 pokemons
 
 // Adds a new pokemon in the pokemonRepository
+
 pokemonRepository.add(
   { name: 'Charmander',
     types: 'fire',
