@@ -41,15 +41,32 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-//The IIFE then returns an object with two keys: add and getAll.
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
 
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector(".pokemon-list");
+    let list = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    list.appendChild(button);
+    pokemonList.appendChild(list);
+
+    //Adding event listener 'click' and calling eventHander showDetails
+    button.addEventListener('click', function(event){
+      showDetails(pokemon);
+    });
+  }
+
+//The IIFE then returns an object with two keys: add and getAll.
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem,
   };
 })();
-
-
 
 console.log(pokemonRepository.getAll()); // returns pokemonList Array which has 4 pokemons
 
@@ -64,16 +81,6 @@ pokemonRepository.add(
 
 console.log(pokemonRepository.getAll()); // returns pokemonList Array which has now 5 pokemons
 
-
-//Using forEach() loops
-function myPokemonFunction(pokemon){
-  if (pokemon.height > 1.0) {
-    document.write("<h2>"+ pokemon.name + " (height: " + pokemon.height + " m)"+ " - Wow, that’s big!" + "<h2>");
-  } else if (pokemon.height >= 0.7 && pokemon.height <= 1.0) {
-    document.write("<h2>"+ pokemon.name + " (height: " + pokemon.height + " m)"+ " - a medium-sized pokemon" + "<h2>");
-  } else {
-    document.write("<h2>"+ pokemon.name + " (height: " + pokemon.height + " m)"+ " - it's a small pokemon" + "<h2>");
-  }
-}
-
-pokemonRepository.getAll().forEach(myPokemonFunction);
+pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.addListItem(pokemon)
+});

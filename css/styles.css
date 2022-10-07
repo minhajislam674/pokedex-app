@@ -1,7 +1,29 @@
-html{
-  margin: 10px 10px;
-}
 
 h2 {
   text-align:center;
+}
+
+ul {
+  list-style-type: none;
+  text-align:center;
+}
+.button-class {
+  min-width: 50%;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: 2px solid #4caf50;
+}
+.button-class:hover {
+  background-color: white;
+  color: #4caf50;
+
 }
