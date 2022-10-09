@@ -1,36 +1,29 @@
 //The Pokémon list is defined and housed within an IIFE.
 
 let pokemonRepository = (function () {
-  let pokemonList = [
-    { name: 'Bulbasaur',
-      types: ['grass', 'posion'],
-      height: 0.7,
-      abilities: ['Chlorophyll', 'Overgrow']
-    },
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    { name: 'Metapod',
-      types: ['bug', 'posion'],
-      height: 0.7,
-      abilities: 'Shed-skin'
-    },
 
-    { name: 'Butterfree',
-      types: ['bug', 'flying'],
-      height: 1.1,
-      abilities: ['Compoundeyes', 'Tinted-lens']
-    },
+// The following two functions displays and hides loading message
 
-    { name: 'Vulpix',
-      types: 'fire',
-      height: 0.6,
-      abilities: ['Chlorophyll', 'Overgrow']
-    }
-  ];
+  let showLoadingMessage = function () {
+    console.log('Pokemon data is being loaded...')
+  }
 
-//The following two functions are what will allow anything outside the IIFE to interact with the pokemonList variable within it.
+  let hideLoadingMessage = function () {
+    console.log('Pokemon data loaded successfuly!')
+  }
+
+
+
+//validatas if the added item is an object and follows specified conditions
 
   function add(pokemon) {
-    if (typeof pokemon === 'object') {
+    if (typeof pokemon === 'object' &&
+    "name" in pokemon &&
+    "detailsUrl" in pokemon
+  ) {
       pokemonList.push(pokemon);
     } else {
       console.log('please enter valid data');
@@ -39,10 +32,6 @@ let pokemonRepository = (function () {
 
   function getAll() {
     return pokemonList;
-  }
-
-  function showDetails(pokemon) {
-    console.log(pokemon);
   }
 
   function addListItem(pokemon) {
@@ -60,27 +49,67 @@ let pokemonRepository = (function () {
     });
   }
 
+// This function fetches pokemon data from API, then add each pokemon to the pokemonList with the add() function
+
+  function loadList() {
+    showLoadingMessage();
+    return fetch(apiUrl).then(function(response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function(item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+        console.log(pokemon);
+      });
+      hideLoadingMessage();
+    }).catch(function(e) {
+      console.error(e);
+    })
+  }
+
+
+// This function loads selected data for the respective pokemon
+
+  function loadDetails (item) {
+    showLoadingMessage();
+    let url = item.detailsUrl;
+    return fetch(url).then(function(response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+      hideLoadingMessage();
+    }).catch(function(e) {
+      console.error(e);
+    });
+  }
+
+// This function executes the loadDetails() function
+
+  function showDetails (item) {
+    pokemonRepository.loadDetails(item).then(function () {
+      console.log(item);
+    });
+  }
+
 //The IIFE then returns an object with two keys: add and getAll.
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
 })();
 
-console.log(pokemonRepository.getAll()); // returns pokemonList Array which has 4 pokemons
 
-// Adds a new pokemon in the pokemonRepository
-
-pokemonRepository.add(
-  { name: 'Charmander',
-    types: 'fire',
-    height: 2,
-    abilities: 'Blaze'
-});
-
-console.log(pokemonRepository.getAll()); // returns pokemonList Array which has now 5 pokemons
-
-pokemonRepository.getAll().forEach(function(pokemon) {
-pokemonRepository.addListItem(pokemon)
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon)
+  });
 });
