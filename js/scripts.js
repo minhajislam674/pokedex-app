@@ -24,8 +24,15 @@ let pokemonRepository = (function () {
     let titleElement = document.createElement('h1');
     titleElement.innerText = item.name;
 
-    let contentElement = document.createElement('p');
-    contentElement.innerText = 'Height: ' + item.height;
+    let heightElement = document.createElement('p');
+    heightElement.innerText = 'Height: ' + item.height;
+
+    let typesElement = document.createElement('p');
+    const pokemonTypes = item.types.map(({ type }) => type.name);
+    typesElement.innerText = 'Types: ' + pokemonTypes.join(', ');
+
+    //.toString() to join an array with a comma
+    //typesElement.innerText = 'Types: ' + pokemonTypes.toString();
 
     let imageElement = document.createElement("img");
     imageElement.setAttribute("src", item.imageUrl);
@@ -34,7 +41,8 @@ let pokemonRepository = (function () {
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
+    modal.appendChild(heightElement);
+    modal.appendChild(typesElement);
     modal.appendChild(imageElement);
     modalContainer.appendChild(modal);
 
@@ -125,7 +133,7 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       item.imageUrl = details.sprites.other.dream_world.front_default;
       item.height = details.height;
-      item.types = details.types.type.name;
+      item.types = details.types;
     }).catch(function(e) {
       console.error(e);
     });

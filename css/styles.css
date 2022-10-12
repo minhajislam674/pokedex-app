@@ -95,3 +95,8 @@ ul {
   height: auto;
 
 }
+
+.nav-button {
+  position: absolute;
+  right: 20px;
+}
