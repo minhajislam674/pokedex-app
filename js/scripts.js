@@ -2,7 +2,7 @@
 
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=550';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=200';
   let modalContainer = document.querySelector('#exampleModal');
 
   //Modal feature with jQuery
@@ -77,7 +77,7 @@ let pokemonRepository = (function () {
     let pokemonList = document.querySelector(".pokemon-list");
     let loadingMessage = document.createElement("p");
     loadingMessage.classList.add("loading-message");
-    loadingMessage.innerText = "Loading data, please wait";
+    loadingMessage.innerText = "Loading pokemons, please wait";
     pokemonList.appendChild(loadingMessage);
   }
 
@@ -96,12 +96,12 @@ let pokemonRepository = (function () {
       return response.json();
     })
     .then(function (json) {
-      hideLoadingMessage();
       json.results.forEach(function(item) {
         let pokemon = {
           name: item.name,
           detailsUrl: item.url
         };
+        hideLoadingMessage();
         add(pokemon);
       });
     }).catch(function(e) {
