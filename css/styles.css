@@ -1,34 +1,45 @@
+body  {
+  background-image: linear-gradient(to left bottom, #28534b, #275853, #265d5b, #246264, #24676d);
+}
+
+ .jumbotron {
+  background-color:rgba(0, 0, 0, 0);
+  color: white;
+}
+
 .page-container{
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
-ul {
-  list-style-type: none;
-  text-align:center;
+ul.pokemon-list {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+    text-align: center;
+    list-style: none;
+    margin-block-end: 0;
 }
 
-
-.button-class {
-  min-width: 50%;
-  max-width: 60%;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
-  border: 2px solid #4caf50;
-  text-transform: capitalize;
+ .button-class-new {
+    width: 220px;
+    height: 120px;
+    background-color:rgba(0, 0, 0, 0);
+    color: #fff;
+    border: 2px solid #fafafa;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 7px 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-weight: 400px;
+    text-transform: capitalize;
+    transition: background-color .5s linear;
 }
 
-.button-class:hover {
-  background-color: white;
-  color: #4caf50;
+.button-class-new:hover, .button-class-new:active {
+  color:#fff;
+  background-color:rgba(0, 150, 136, 0.4);
 }
 
 div.modal-header {
@@ -44,4 +55,8 @@ div.modal-body {
   margin-bottom: 0;
   max-width: 50%;
   height: auto;
+}
+
+.loading-message{
+  color: white;
 }
