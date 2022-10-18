@@ -10,6 +10,7 @@
 
   <body>
     <header>
+      <!-- navbar -->
       <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
           <a class="navbar-brand" href="#">
             <img src="./img/logo.png" alt="Pokédex App logo" height="30">
@@ -21,7 +22,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- nav component: -->
+            <!-- navlinks located inside navbar -->
             <ul class="navbar-nav">
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -29,10 +30,17 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
               </li>
+
+              <!-- Searchbar located inside navbar -->
+              <form class="form-inline">
+                <input class="form-control mr-sm-2"id="searchBar"type="search" placeholder="Search pokemon"aria-label="Search pokemon"/>
+              </form>
             </ul>
           </div>
         </nav>
     </header>
+
+    <!-- jumbotron -->
 
     <main>
       <div class="jumbotron text-center page-container jumbotron-style ">
@@ -65,12 +73,7 @@
           </div>
         </div>
       </div>
-
-
     </main>
-
-    <footer>
-    </footer>
 
       <script src="js/promise-polyfill.js"></script>
       <script src="js/fetch-polyfill.js"></script>
@@ -78,5 +81,6 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <script src="js/scripts.js"></script>
+
   </body>
 </html>

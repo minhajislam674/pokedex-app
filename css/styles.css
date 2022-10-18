@@ -20,7 +20,7 @@ ul.pokemon-list {
     margin-block-end: 0;
 }
 
- .button-class-new {
+ .button-class {
     width: 220px;
     height: 120px;
     background-color:rgba(0, 0, 0, 0);
@@ -37,7 +37,7 @@ ul.pokemon-list {
     transition: background-color .5s linear;
 }
 
-.button-class-new:hover, .button-class-new:active {
+.button-class:hover, .button-class:active {
   color:#fff;
   background-color:rgba(0, 150, 136, 0.4);
 }

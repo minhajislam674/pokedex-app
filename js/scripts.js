@@ -59,7 +59,7 @@ let pokemonRepository = (function () {
     let list = document.createElement("li");
     let button = document.createElement("button");
     button.innerText = pokemon.name;
-    button.classList.add("button-class-new");
+    button.classList.add("button-class");
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#pokemon-modal')
     list.appendChild(button);
@@ -135,7 +135,20 @@ let pokemonRepository = (function () {
     });
   }
 
-//The IIFE then returns an object with two keys: add and getAll.
+  // Search Bar Event Listener
+
+  // const searchInput = document.getElementById('searchBar');
+  // searchInput.addEventListener("input", (e) => {
+  //   let value = e.target.value;
+  //   if (value && value.trim().length > 0){
+  //        value = value.trim().toLowerCase()
+  //
+  //       pokemonList(pokemonList.filter(pokemon => {
+  //           return pokemon.name.includes(value)
+  //       }))
+
+
+  //The IIFE then returns an object with two keys: add and getAll.
   return {
     add: add,
     getAll: getAll,
