@@ -2,15 +2,21 @@
 
 ## Project description
 
-The objective of this project is to build a small web application with HTML, CSS, and JavaScript that loads data from an external API and enables the viewing of data points in detail.
-
-## How to get the project running
-
-
-
-## Project dependencies (e.g., JavaScript version, ESLint rules)
-JavaScript ES6
-The project used polyfill to ensure support for older browsers (promise-polyfill and fetch polyfill)
+The Pokédex app uses HTML, CSS, and JavaScript to load data from an external API. Users can browse through the list of Pokémon in the app.  Clicking on a Pokemon displays an image and additional details.
 
 ## Which API the project uses
-This project uses the free Pokémon API. Here is the link: https://pokeapi.co/api/v2/pokemon/?limit=150
+This project uses a public free Pokémon API. The API can be found here: https://pokeapi.co/api/v2/pokemon/?limit=150
+
+## Key features
+Displays a list of Pokemon loaded from an API after the page is loaded.
+Shows a loading message when the data are being loaded
+Upon clicking a Pokemon item, a modal opens that shows more information about that Pokemon.
+There is a search bar at the top where one can enter the name of a Pokemon to find it.
+
+## Project dependencies
+HTML, CSS and JavaScript ES6
+Bootstrap
+jQuery
+
+## Live Demo
+https://minhajislam674.github.io/simple-js-app/
