@@ -56,14 +56,12 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');
-    let list = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('button-class');
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#pokemon-modal')
-    list.appendChild(button);
-    pokemonList.appendChild(list);
+    pokemonList.appendChild(button);
 
     //Adding event listener 'click' and calling eventHander showDetails
     button.addEventListener('click', function(){
@@ -135,18 +133,30 @@ let pokemonRepository = (function () {
     });
   }
 
-  // Search Bar Event Listener
+  // Search pokemon feature
 
-  // const searchInput = document.getElementById('searchBar');
-  // searchInput.addEventListener("input", (e) => {
-  //   let value = e.target.value;
-  //   if (value && value.trim().length > 0){
-  //        value = value.trim().toLowerCase()
-  //
-  //       pokemonList(pokemonList.filter(pokemon => {
-  //           return pokemon.name.includes(value)
-  //       }))
-
+    const searchInput = document.getElementById('searchBar');
+    const pokemonListElement = document.getElementsByClassName('pokemon-list')[0];
+      searchInput.addEventListener('keyup', (e) => {
+        let searchString = e.target.value.trim().toLowerCase();
+        if (searchString.length) {
+          // items inside the pokemon list ("ul" element)
+          const pokemonListItems = pokemonListElement.getElementsByTagName('button');
+          for (let i = 0; i < pokemonListItems.length; i++) {
+            // The button inside each item list
+            const pokemonButtonInsideItem = pokemonListItems[i];
+            // Pokemon name that appears on the button
+            const pokemonName = pokemonButtonInsideItem.innerText;
+            if (pokemonName.toLowerCase().includes(searchString)) {
+              // Display an item that include the search string
+              pokemonListItems[i].style.display = '';
+            } else {
+              // Hide item list that does not include the search string
+              pokemonListItems[i].style.display = 'none';
+            }
+          }
+        }
+      })
 
   //The IIFE then returns an object with two keys: add and getAll.
   return {
