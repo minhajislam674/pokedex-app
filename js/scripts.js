@@ -2,7 +2,7 @@
 
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=200';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=50';
 
   //Modal feature with jQuery
 
@@ -56,20 +56,25 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');
-    let list = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('button-class');
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#pokemon-modal')
-    list.appendChild(button);
-    pokemonList.appendChild(list);
+    pokemonList.appendChild(button);
 
     //Adding event listener 'click' and calling eventHander showDetails
     button.addEventListener('click', function(){
     showDetails(pokemon);
     });
   }
+
+  // Select navbar-brand and onclick event to it
+  
+  let navbarBrand = document.querySelector('.navbar-brand');
+  navbarBrand.addEventListener('click', function() {
+    location.reload();
+  });
 
 
   // create and append pokemon loading message
@@ -135,17 +140,39 @@ let pokemonRepository = (function () {
     });
   }
 
-  // Search Bar Event Listener
 
-  // const searchInput = document.getElementById('searchBar');
-  // searchInput.addEventListener("input", (e) => {
-  //   let value = e.target.value;
-  //   if (value && value.trim().length > 0){
-  //        value = value.trim().toLowerCase()
-  //
-  //       pokemonList(pokemonList.filter(pokemon => {
-  //           return pokemon.name.includes(value)
-  //       }))
+
+  // Search pokemon feature
+
+    const searchInput = document.getElementById('searchBar');
+    const pokemonListElement = document.getElementsByClassName('pokemon-list')[0];
+      searchInput.addEventListener('keyup', (e) => {
+        let searchString = e.target.value.trim().toLowerCase();
+        if (searchString.length) {
+          // items inside the pokemon list ("ul" element)
+          const pokemonListItems = pokemonListElement.getElementsByTagName('button');
+          for (let i = 0; i < pokemonListItems.length; i++) {
+            // The button inside each item list
+            const pokemonButtonInsideItem = pokemonListItems[i];
+            // Pokemon name that appears on the button
+            const pokemonName = pokemonButtonInsideItem.innerText;
+            if (pokemonName.toLowerCase().includes(searchString)) {
+              // Display an item that include the search string
+              pokemonListItems[i].style.display = '';
+            } else {
+              // Hide item list that does not include the search string
+              pokemonListItems[i].style.display = 'none';
+            }
+          }
+        } else {
+          // If the search string is empty, display all items
+          const pokemonListItems = pokemonListElement.getElementsByTagName('button');
+          for (let i = 0; i < pokemonListItems.length; i++) {
+            pokemonListItems[i].style.display = '';
+          }
+
+        }
+      })
 
 
   //The IIFE then returns an object with two keys: add and getAll.
