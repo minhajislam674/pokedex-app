@@ -2,7 +2,7 @@
 
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=200';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=50';
 
   //Modal feature with jQuery
 
@@ -69,6 +69,13 @@ let pokemonRepository = (function () {
     });
   }
 
+  // Select navbar-brand and onclick event to it
+  
+  let navbarBrand = document.querySelector('.navbar-brand');
+  navbarBrand.addEventListener('click', function() {
+    location.reload();
+  });
+
 
   // create and append pokemon loading message
   function showLoadingMessage() {
@@ -133,6 +140,8 @@ let pokemonRepository = (function () {
     });
   }
 
+
+
   // Search pokemon feature
 
     const searchInput = document.getElementById('searchBar');
@@ -155,8 +164,16 @@ let pokemonRepository = (function () {
               pokemonListItems[i].style.display = 'none';
             }
           }
+        } else {
+          // If the search string is empty, display all items
+          const pokemonListItems = pokemonListElement.getElementsByTagName('button');
+          for (let i = 0; i < pokemonListItems.length; i++) {
+            pokemonListItems[i].style.display = '';
+          }
+
         }
       })
+
 
   //The IIFE then returns an object with two keys: add and getAll.
   return {

@@ -31,11 +31,15 @@ body {
   text-transform: capitalize;
   transition: background-color 0.5s linear;
 }
+.search-bar {
+  float: right;
+
+}
 
 .button-class:hover,
 .button-class:active {
   color: #fff;
-  background-color: rgba(0, 150, 136, 0.4);
+  background-color: rgba(169, 255, 246, 0.4);
 }
 
 div.modal-header {
