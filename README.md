@@ -2,7 +2,7 @@
 
 > The Pokédex app uses HTML, CSS, and JavaScript to load list of pokemons from an external API.
 
-Live Demo: https://minhajislam674.github.io/simple-js-app/
+Live Demo: https://minhajislam674.github.io/pokedex-app/
 
 <img
 src="/img/Screenshot-homepage.jpeg"
